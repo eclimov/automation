@@ -1,3 +1,5 @@
 https://github.com/codeborne/selenide/wiki/Selenide-vs-Selenium
 
 http://selenide.org/documentation/screenshots.html
+
+http://ru.selenide.org/documentation/page-objects.html
