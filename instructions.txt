@@ -1,0 +1,3 @@
+https://github.com/codeborne/selenide/wiki/Selenide-vs-Selenium
+
+http://selenide.org/documentation/screenshots.html
