@@ -1,17 +1,13 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import org.openqa.selenium.*;
+import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Screenshots.takeScreenShot;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-import org.testng.annotations.*;
-
-public class TestClass {
+public class Sandbox {
     @Test
-    public void userCanLoginByUsername() {
+    public void sandboxMethod() {
         Configuration.reportsFolder = System.getProperty("user.dir")+"/reports";
         /*
         open("/login"); //Local
