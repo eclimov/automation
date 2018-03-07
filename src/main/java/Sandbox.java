@@ -1,13 +1,11 @@
 import com.codeborne.selenide.Configuration;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Sandbox extends Initialization {
+public class Sandbox extends Page {
 
     @Test
     public void sandboxMethod() {
