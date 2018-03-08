@@ -25,7 +25,7 @@ public class Sandbox extends Page {
         $("#lst-ib").shouldNot(visible);
         */
 
-        open("https://dev2.eminiasystem.com/euwhse/manager/cost_allocation.cfm?receipt_id=8012");
+        open("google.com");
         login("login", "pass");
         $("#lst-ib").should(visible);
     }
