@@ -5,13 +5,12 @@ import org.testng.annotations.BeforeTest;
 public class Initialization {
     @BeforeTest
     public void beforeTest(){
-        Configuration.browser = "chrome";
-        int chrome_version = 61;
+        Configuration.browser = Config.getProperty("browser");
+        int chrome_version = Integer.parseInt(Config.getProperty("browser_version"));
         String chromedriver_version = getChromeDriverVersion(chrome_version);
 
         //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
         WebDriverManager.chromedriver().version(chromedriver_version).setup();
-
     }
 
     private boolean between(int x, int min, int max){ //Number is between values inclusively
@@ -26,7 +25,9 @@ public class Initialization {
             https://sites.google.com/a/chromium.org/chromedriver/downloads
             https://chromedriver.storage.googleapis.com/2.26/notes.txt
         */
-        if(between(cv, 62,64)){
+        if(between(cv, 64,66)){
+            chromedriver_version = "2.36";
+        }else if(between(cv, 62,64)){
             chromedriver_version = "2.35";
         } else if(between(cv, 61,63)){
             chromedriver_version = "2.34";
