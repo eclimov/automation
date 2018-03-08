@@ -25,7 +25,7 @@ public class Sandbox extends Page {
         $("#lst-ib").shouldNot(visible);
         */
 
-        open("google.com");
+        open("https://www.google.md/");
         login("login", "pass");
         $("#lst-ib").should(visible);
     }
