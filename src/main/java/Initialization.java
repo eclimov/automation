@@ -6,7 +6,7 @@ public class Initialization {
     @BeforeTest
     public void beforeTest(){
         Configuration.browser = "chrome";
-        int chrome_version = 64;
+        int chrome_version = 61;
         String chromedriver_version = getChromeDriverVersion(chrome_version);
 
         //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
@@ -14,7 +14,7 @@ public class Initialization {
 
     }
 
-    public boolean between(int x, int min, int max){ //Number is between values inclusively
+    private boolean between(int x, int min, int max){ //Number is between values inclusively
         return x>=min && x<=max;
     }
 

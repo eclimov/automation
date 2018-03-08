@@ -17,11 +17,16 @@ public class Sandbox extends Page {
         $(".success-message").shouldHave(text("Hello, Johny!"));
         */
 
+        /*
         open("https://www.google.md/");
         $("#lst-ib").setValue("search by any string");
         //takeScreenShot("my-test-case");
         $("input[name='btnK']").click();
-
         $("#lst-ib").shouldNot(visible);
+        */
+
+        open("https://dev2.eminiasystem.com/euwhse/manager/cost_allocation.cfm?receipt_id=8012");
+        login("login", "pass");
+        $("#lst-ib").should(visible);
     }
 }
