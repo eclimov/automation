@@ -1,5 +1,6 @@
 import java.util.Properties;
 
+//Singleton class(means that we can call it from anywhere without creating actual object)
 public class Config {
 
     private Properties configFile;
