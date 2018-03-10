@@ -9,7 +9,6 @@ public class Sandbox extends Page {
 
     @Test
     public void sandboxMethod() {
-        Configuration.reportsFolder = System.getProperty("user.dir")+"/reports";
         /*
         open("/login"); //Local
         $(By.name("username")).setValue("johny");

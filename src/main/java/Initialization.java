@@ -11,10 +11,8 @@ public class Initialization {
 
         //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
         WebDriverManager.chromedriver().version(chromedriver_version).setup();
-    }
 
-    private boolean between(int x, int min, int max){ //Number is between values inclusively
-        return x>=min && x<=max;
+        Configuration.reportsFolder = System.getProperty("user.dir")+"/reports";
     }
 
     // TODO: move the dataset into a separate file or database(ex.: SQLite)
@@ -25,23 +23,23 @@ public class Initialization {
             https://sites.google.com/a/chromium.org/chromedriver/downloads
             https://chromedriver.storage.googleapis.com/2.26/notes.txt
         */
-        if(between(cv, 64,66)){
+        if(Util.between(cv, 64,66)){
             chromedriver_version = "2.36";
-        }else if(between(cv, 62,64)){
+        }else if(Util.between(cv, 62,64)){
             chromedriver_version = "2.35";
-        } else if(between(cv, 61,63)){
+        } else if(Util.between(cv, 61,63)){
             chromedriver_version = "2.34";
-        } else if(between(cv, 60,62)){
+        } else if(Util.between(cv, 60,62)){
             chromedriver_version = "2.33";
-        } else if(between(cv, 58,60)){
+        } else if(Util.between(cv, 58,60)){
             chromedriver_version = "2.32";
-        } else if(between(cv, 56,58)){
+        } else if(Util.between(cv, 56,58)){
             chromedriver_version = "2.29";
-        } else if(between(cv, 54,56)){
+        } else if(Util.between(cv, 54,56)){
             chromedriver_version = "2.27";
-        } else if(between(cv, 52,54)){
+        } else if(Util.between(cv, 52,54)){
             chromedriver_version = "2.24";
-        } else if(between(cv, 49,52)){
+        } else if(Util.between(cv, 49,52)){
             chromedriver_version = "2.22";
         }
         return chromedriver_version;
