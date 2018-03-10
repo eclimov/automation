@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Properties;
 
 //Singleton class(means that we can call it from anywhere without creating actual object)
@@ -11,9 +12,15 @@ public class Config {
         // TODO: create config file if not exists and fill it with values
         configFile = new java.util.Properties();
         try {
-            //configFile.load(this.getClass().getClassLoader().getResourceAsStream(config_path));
-            //configFile.load(new FileInputStream(config_path));
-            configFile.load(getClass().getResourceAsStream("config.cfg")); //file in "\src\main\resources"
+            String config_file = "config.cfg";
+            InputStream cfg_resource = getClass().getResourceAsStream(config_file);
+
+            if(cfg_resource == null){
+                System.out.println("Please, create a '"+config_file+"' configuration file in 'src/main/resources/' folder");
+                System.exit(0);
+            } else{
+                configFile.load(cfg_resource); //file in "\src\main\resources"
+            }
         } catch (Exception eta) {
             eta.printStackTrace();
         }
