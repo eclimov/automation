@@ -27,6 +27,11 @@ public class Config {
     }
 
     private String getValue(String key) {
+        System.out.println(configFile.getProperty(key));
+        if(configFile.getProperty(key) == null){
+            System.out.println("Property '"+key+"' does not exist in config file.");
+            return "";
+        }
         return configFile.getProperty(key);
     }
 
@@ -34,17 +39,4 @@ public class Config {
         if (instance == null) instance = new Config();
         return instance.getValue(key);
     }
-
-    // TODO: make the following work
-    /*
-    private void setValue(String key, String value) {
-        configFile.setProperty(key, value);
-    }
-
-    public static boolean setProperty(String key, String value) {
-        if (instance == null) instance = new Config();
-        instance.setValue(key, value);
-        return true;
-    }
-    */
 }
