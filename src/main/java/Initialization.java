@@ -5,8 +5,8 @@ import org.testng.annotations.BeforeTest;
 public class Initialization {
     @BeforeTest
     public void beforeTest(){
-        Configuration.browser = Config.getProperty("browser");
-        int chrome_version = Integer.parseInt(Config.getProperty("browser_version"));
+        Configuration.browser = Config.getBrowser();
+        int chrome_version = Integer.parseInt(Config.getBrowserVersion());
         String chromedriver_version = getChromeDriverVersion(chrome_version);
 
         //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
