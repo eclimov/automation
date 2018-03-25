@@ -25,7 +25,8 @@ public class Sandbox extends Page {
         */
 
         open("https://www.google.md/");
-        login("login", "pass");
+        //login("myLogin", "myPassword");
+        $("#lst-ib").setValue("Test").submit();
         $("#lst-ib").should(visible);
     }
 }
