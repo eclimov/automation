@@ -10,6 +10,7 @@ public class Config {
 
     private Config() {
         // TODO: create config file if not exists and fill it with values
+        // TODO(alt): prepare and commit default cfg file, that will be then changed manually by user
         configFile = new java.util.Properties();
         try {
             String config_file = "config.cfg";
@@ -38,5 +39,13 @@ public class Config {
     public static String getProperty(String key) {
         if (instance == null) instance = new Config();
         return instance.getValue(key);
+    }
+
+    public static String getBrowser(){
+        return getProperty("browser");
+    }
+
+    public static String getBrowserVersion(){
+        return getProperty("browser_version");
     }
 }
