@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Properties;
+import java.util.Scanner;
 
 //Singleton class(means that we can call it from anywhere without creating actual object)
 public class Config {
@@ -17,6 +18,12 @@ public class Config {
             InputStream cfg_resource = getClass().getResourceAsStream(config_file);
 
             if(cfg_resource == null){
+                /*
+                https://stackoverflow.com/questions/17554085/how-to-create-a-file-in-src-main-resources
+                System.out.println("QWERTY");
+                Scanner scanner = new Scanner(cfg_resource);
+                scanner.close();
+                */
                 System.out.println("Please, create a '"+config_file+"' configuration file in 'src/main/resources/' folder");
                 System.exit(0);
             } else{
@@ -39,6 +46,10 @@ public class Config {
     public static String getProperty(String key) {
         if (instance == null) instance = new Config();
         return instance.getValue(key);
+    }
+
+    public static String getUser(){
+        return getProperty("user");
     }
 
     public static String getBrowser(){
