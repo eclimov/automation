@@ -1,12 +1,16 @@
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.BeforeTest;
+import utility.Util;
 
 public class Initialization {
     @BeforeTest
     public void beforeTest(){
+        String user = Config.getUser();
+        System.out.println(user);
         Configuration.browser = Config.getBrowser();
         int chrome_version = Integer.parseInt(Config.getBrowserVersion());
+        System.out.println(Configuration.browser + ' ' + chrome_version);
         String chromedriver_version = getChromeDriverVersion(chrome_version);
 
         //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
@@ -24,7 +28,7 @@ public class Initialization {
             https://chromedriver.storage.googleapis.com/2.26/notes.txt
         */
         if(Util.between(cv, 64,66)){
-            chromedriver_version = "2.36";
+            chromedriver_version = "2.37";
         }else if(Util.between(cv, 62,64)){
             chromedriver_version = "2.35";
         } else if(Util.between(cv, 61,63)){

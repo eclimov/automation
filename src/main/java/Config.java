@@ -8,6 +8,7 @@ public class Config {
     private Properties configFile;
 
     private static Config instance;
+    private static String autotestDbusername;
 
     private Config() {
         // TODO: create config file if not exists and fill it with values
@@ -24,7 +25,7 @@ public class Config {
                 Scanner scanner = new Scanner(cfg_resource);
                 scanner.close();
                 */
-                System.out.println("Please, create a '"+config_file+"' configuration file in 'src/main/resources/' folder");
+                System.out.println("Please, create a '"+config_file+"' configuration file in 'src/main/resources/' folder with the following fields: \nuser");
                 System.exit(0);
             } else{
                 configFile.load(cfg_resource); //file in "\src\main\resources"
@@ -34,8 +35,44 @@ public class Config {
         }
     }
 
+    public static String getUser(){
+        return getProperty("user_name");
+    }
+
+    public static String getBrowser(){
+        return getProperty("browser");
+    }
+
+    public static String getBrowserVersion(){
+        return getProperty("browser_version");
+    }
+
+    public static String getAutotestDbusername() {
+        return getProperty("autotest_db_name");
+    }
+
+    public static String getAutotestDbpassword() {
+        return getProperty("autotest_db_password");
+    }
+
+    public static String getAutotestDbUrl() {
+        return getProperty("autotest_db_url");
+    }
+
+    public static String getDbUsername() {
+        return getProperty("db_username");
+    }
+
+    public static String getDbPassword() {
+        return getProperty("db_password");
+    }
+
+    public static String getDbUrl() {
+        return getProperty("db_url");
+    }
+
+
     private String getValue(String key) {
-        System.out.println(configFile.getProperty(key));
         if(configFile.getProperty(key) == null){
             System.out.println("Property '"+key+"' does not exist in config file.");
             return "";
@@ -46,17 +83,5 @@ public class Config {
     public static String getProperty(String key) {
         if (instance == null) instance = new Config();
         return instance.getValue(key);
-    }
-
-    public static String getUser(){
-        return getProperty("user");
-    }
-
-    public static String getBrowser(){
-        return getProperty("browser");
-    }
-
-    public static String getBrowserVersion(){
-        return getProperty("browser_version");
     }
 }

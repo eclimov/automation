@@ -1,6 +1,11 @@
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.Test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -30,5 +35,7 @@ public class Sandbox extends Page {
         $("#lst-ib").setValue("Test").submit();
         $("#lst-ib").should(visible);
         */
+
+        open("https://sites.google.com/a/chromium.org/chromedriver/downloads");
     }
 }
