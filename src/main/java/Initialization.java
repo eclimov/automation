@@ -8,13 +8,20 @@ public class Initialization {
     public void beforeTest(){
         String user = Config.getUser();
         System.out.println(user);
-        Configuration.browser = Config.getBrowser();
-        int chrome_version = Integer.parseInt(Config.getBrowserVersion());
-        System.out.println(Configuration.browser + ' ' + chrome_version);
-        String chromedriver_version = getChromeDriverVersion(chrome_version);
 
-        //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
-        WebDriverManager.chromedriver().version(chromedriver_version).setup();
+        String browser = Config.getBrowser();
+        System.out.println(browser);
+
+        String browser_version = Config.getBrowserVersion();
+        System.out.println('v' + browser_version);
+
+        if (browser.equalsIgnoreCase("chrome")) {
+            Configuration.browser = browser;
+            String chromedriver_version = getChromeDriverVersion(Integer.parseInt(browser_version));
+
+            //WebDriverManager: http://automation-remarks.com/selenium-webdriver-manager/index.html
+            WebDriverManager.chromedriver().version(chromedriver_version).setup();
+        }
 
         Configuration.reportsFolder = System.getProperty("user.dir")+"/reports";
     }
@@ -27,7 +34,9 @@ public class Initialization {
             https://sites.google.com/a/chromium.org/chromedriver/downloads
             https://chromedriver.storage.googleapis.com/2.26/notes.txt
         */
-        if(Util.between(cv, 64,66)){
+        if(Util.between(cv, 65,67)) {
+            chromedriver_version = "2.38";
+        }else if(Util.between(cv, 64,66)){
             chromedriver_version = "2.37";
         }else if(Util.between(cv, 62,64)){
             chromedriver_version = "2.35";

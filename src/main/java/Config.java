@@ -1,38 +1,69 @@
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
-//Singleton class(means that we can call it from anywhere without creating actual object)
+//Singleton class(means that we can have only one instance of it)
 public class Config {
 
     private Properties configFile;
 
     private static Config instance;
-    private static String autotestDbusername;
+
+    private String config_file = "config.cfg";
+    private String config_file_path = System.getProperty("user.dir") + "\\" + config_file;
 
     private Config() {
-        // TODO: create config file if not exists and fill it with values
-        // TODO(alt): prepare and commit default cfg file, that will be then changed manually by user
-        configFile = new java.util.Properties();
-        try {
-            String config_file = "config.cfg";
-            InputStream cfg_resource = getClass().getResourceAsStream(config_file);
+        if (!new File(config_file_path).isFile()) { // If config file doesn't exist, create it and fill it with default values
+            initConfig();
+        }
 
-            if(cfg_resource == null){
-                /*
-                https://stackoverflow.com/questions/17554085/how-to-create-a-file-in-src-main-resources
-                System.out.println("QWERTY");
-                Scanner scanner = new Scanner(cfg_resource);
-                scanner.close();
-                */
-                System.out.println("Please, create a '"+config_file+"' configuration file in 'src/main/resources/' folder with the following fields: \nuser");
-                System.exit(0);
-            } else{
-                configFile.load(cfg_resource); //file in "\src\main\resources"
-            }
+        configFile = new Properties();
+        try {
+            InputStream cfg_resource = new FileInputStream(config_file_path);
+            configFile.load(cfg_resource);
         } catch (Exception eta) {
             eta.printStackTrace();
         }
+    }
+
+    private boolean initConfig() {
+        try {
+            new File(System.getProperty("user.dir") + "/config.cfg").createNewFile();
+            Map<String, String> cfgValues = new HashMap<String, String>();
+            cfgValues.put("user_name", "[User name]");
+            cfgValues.put("browser", "[Chrome or Firefox]");
+            cfgValues.put("browser_version", "[Number without decimals]");
+            cfgValues.put("db_username", "[DB user name]");
+            cfgValues.put("db_password", "[DB password]");
+            cfgValues.put("db_url", "[DB URL]");
+            cfgValues.put("autotest_db_username", "[Autotests DB user name]");
+            cfgValues.put("autotest_db_password", "[Autotests DB password]");
+            cfgValues.put("autotest_db_url", "[Autotests DB URL]");
+            for (Map.Entry<String, String> entry : cfgValues.entrySet()) {
+                setConfigValue(entry.getKey(), entry.getValue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean setConfigValue(String key, String value)  {
+        try {
+            Properties prop = new Properties();
+            InputStream in = new FileInputStream(config_file_path);
+            prop.load(in);
+            prop.setProperty(key, value);
+            prop.store(new FileOutputStream(config_file_path), null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     public static String getUser(){
@@ -75,7 +106,7 @@ public class Config {
     private String getValue(String key) {
         if(configFile.getProperty(key) == null){
             System.out.println("Property '"+key+"' does not exist in config file.");
-            return "";
+            System.exit(0);
         }
         return configFile.getProperty(key);
     }
