@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Scanner;
 
 //Singleton class(means that we can have only one instance of it)
 public class Config {
@@ -17,6 +16,8 @@ public class Config {
     private Config() {
         if (!new File(config_file_path).isFile()) { // If config file doesn't exist, create it and fill it with default values
             initConfig();
+            System.out.println("Default config file has been created in '" + System.getProperty("user.dir") + "'. Please, fill it with your values and run the script again.");
+            System.exit(0);
         }
 
         configFile = new Properties();
@@ -28,7 +29,7 @@ public class Config {
         }
     }
 
-    private boolean initConfig() {
+    private void initConfig() {
         try {
             new File(System.getProperty("user.dir") + "/config.cfg").createNewFile();
             Map<String, String> cfgValues = new HashMap<String, String>();
@@ -46,13 +47,11 @@ public class Config {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
 
-        return true;
     }
 
-    public boolean setConfigValue(String key, String value)  {
+    public void setConfigValue(String key, String value)  {
         try {
             Properties prop = new Properties();
             InputStream in = new FileInputStream(config_file_path);
@@ -63,7 +62,6 @@ public class Config {
             e.printStackTrace();
         }
 
-        return true;
     }
 
     public static String getUser(){
