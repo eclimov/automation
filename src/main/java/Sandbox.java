@@ -1,12 +1,6 @@
-import com.codeborne.selenide.Configuration;
 import org.testng.annotations.Test;
+import pages.Page;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
