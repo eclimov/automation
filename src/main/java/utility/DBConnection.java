@@ -1,5 +1,8 @@
+package utility;
+
+import initialization.Config;
+
 import java.sql.*;
-import java.*;
 
 /**
  * Created by eduard.climov on 6/20/2017.
