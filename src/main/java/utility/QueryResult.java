@@ -87,4 +87,5 @@ public class QueryResult {
     public int getRowsNumber() {
         return rowsNumber;
     }
+
 }

@@ -13,4 +13,5 @@ public class Page extends Initialization {
         $("input[id*='pass'], input[name*='pass'], input[class*='pass']").sendKeys(password);
         $("form[id*='login'], form[name*='login'], form[class*='login']").submit();
     }
+
 }
