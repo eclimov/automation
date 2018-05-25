@@ -115,5 +115,4 @@ public class Config {
         if (instance == null) instance = new Config();
         return instance.getValue(key);
     }
-
 }
