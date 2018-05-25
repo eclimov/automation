@@ -7,6 +7,9 @@ import static com.codeborne.selenide.Selenide.getElement;
 
 public class Page extends Initialization {
 
+    // TODO: create other pages, using subclass "Builder" to build a page, based different attributes(selectors selected, arguments passed, etc.)
+    // https://stackoverflow.com/questions/1988016/named-parameter-idiom-in-java
+
     // TODO: Get credentials from file
     public void login(CharSequence login, CharSequence password) {
         $("input[id*='login'], input[name*='login'], input[class*='login']").sendKeys(login);

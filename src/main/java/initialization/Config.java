@@ -44,6 +44,7 @@ public class Config {
             cfgValues.put("autotest_db_username", "[Autotests DB user name]");
             cfgValues.put("autotest_db_password", "[Autotests DB password]");
             cfgValues.put("autotest_db_url", "[Autotests DB URL]");
+            cfgValues.put("env", "dev");
             for (Map.Entry<String, String> entry : cfgValues.entrySet()) {
                 setConfigValue(entry.getKey(), entry.getValue());
             }
@@ -100,6 +101,10 @@ public class Config {
 
     public static String getDbUrl() {
         return getProperty("db_url");
+    }
+
+    public static String getEnvironment() {
+        return getProperty("env");
     }
 
 
