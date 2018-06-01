@@ -4,6 +4,7 @@ import java.io.File;
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,5 +55,13 @@ public abstract class Util {
             data = matcher.group(group);
         }
         return data;
+    }
+
+    public static void waitSec(int sec) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(sec*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

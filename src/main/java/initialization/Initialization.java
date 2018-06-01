@@ -8,6 +8,8 @@ import utility.Util;
 public class Initialization {
     @BeforeTest
     public void beforeTest(){
+        Configuration.timeout = 15000;
+
         String user = Config.getUser();
         System.out.println(user);
 
