@@ -2,6 +2,8 @@ package utility;
 
 import java.io.File;
 import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -63,5 +65,20 @@ public abstract class Util {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<String> stringToListObject(String commaSeparatedList) {
+        return Arrays.asList(commaSeparatedList.split("\\s*,\\s*"));
+    }
+
+    public static boolean listFind(String commaSeparatedList, String str) {
+        List<String> list = stringToListObject(commaSeparatedList);
+        for (String element : list) {
+            if(element.equals(str)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
