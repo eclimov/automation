@@ -1,6 +1,8 @@
 package pages;
 
 import initialization.Initialization;
+import org.openqa.selenium.support.ui.Select;
+import utility.Util;
 
 import java.util.List;
 
@@ -18,25 +20,30 @@ public class Page extends Initialization {
         $("form[id*='login'], form[name*='login'], form[class*='login']").submit();
     }
 
-    //TODO: adapt the methods below
-    /*
+
     protected int getRandomOptionIndex(Select select, int minIndex) {
-        int min = minIndex;
         int optionsCount = select.getOptions().size();
-        if (optionsCount > min) {
-            int max = optionsCount - 1;
-            int randomOption = getRandomInt(min, max);
-            write("Select option #" + randomOption + " from: " + optionsCount + " options");
-            return randomOption;
-        } else {
-            String fileName = "note";
-            //String newFileName = makeScreenshot(fileName, (WebElement) select);
-            //write("<br><a href='" + newFileName + "' target='_blank'><img src='" + newFileName + "' style='max-width: 500px;'/></a><br><b>Select '<i>" + select.toString() + "</i>' doesn't have options to choose from");
-            fail("Select '<i>" + select.toString() + "</i>' doesn't have options to choose from. ");
-            return -1;
-        }
+        int max = optionsCount - 1;
+        return Util.getRandomInt(minIndex, max);
     }
 
+    public Select selectRandom(Select select) {
+        int min = 0;
+        select.selectByIndex(getRandomOptionIndex(select, min));
+
+        return select;
+    }
+
+    public Select selectRandom(Select select, int minIndex) {
+        int optionsCount = select.getOptions().size();
+        int max = optionsCount - 1;
+        select.selectByIndex(Util.getRandomInt(minIndex, max));
+
+        return select;
+    }
+
+    //TODO: adapt the methods below
+    /*
     public void randomSelect(Select select) {
         int min = 0;
         if (select.getFirstSelectedOption().getAttribute("value").equals("0")) {
